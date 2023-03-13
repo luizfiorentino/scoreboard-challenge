@@ -10,7 +10,7 @@ function App() {
   const [players, setPlayers] = useState([]);
   const [newPlayer, setNewPlayer] = useState("");
   //const [score, setScore] = useState(0);
-  const [playersArray, setPlayersArray] = useState([]);
+  //const [playersArray, setPlayersArray] = useState([]);
 
   const addMe = () => {
     const player = {
@@ -23,28 +23,86 @@ function App() {
     setNewPlayer("");
     return players;
   };
-  console.log("addPlayer", newPlayer, players);
-
-  // const objects = players.map((player) => {
-  //   const id = Math.round(Math.random() * 100);
-
-  //   setPlayersArray({ name: player, score: 0, id: id });
-  // });
-  //console.log("objects=>", objects, "players.lenght", players.length);
+  //console.log("addPlayer", newPlayer, players);
 
   function incrementScoreByOne(id) {
     const thisPlayer = players.find((player) => player.id === id);
-
     const updatedScore = thisPlayer.score + 1;
     const updatedPlayer = { ...thisPlayer, score: updatedScore };
-
-    console.log("thisPlayer updated", updatedPlayer);
+    //console.log("thisPlayer updated", updatedPlayer);
     const newArray = players.filter((player) => player.id !== id);
+
     setPlayers([...newArray, updatedPlayer]);
   }
 
-  // console.log("clicked", score);
-  // return score + 1;
+  function incrementByFive(id) {
+    const thisPlayer = players.find((player) => player.id === id);
+    const updatedScore = thisPlayer.score + 5;
+    const updatedPlayer = { ...thisPlayer, score: updatedScore };
+    //console.log("thisPlayer updated", updatedPlayer);
+    const newArray = players.filter((player) => player.id !== id);
+
+    setPlayers([...newArray, updatedPlayer]);
+  }
+
+  function resetScore(id) {
+    const thisPlayer = players.find((player) => player.id === id);
+
+    const updatedPlayer = { ...thisPlayer, score: 0 };
+    //console.log("thisPlayer updated", updatedPlayer);
+    const newArray = players.filter((player) => player.id !== id);
+
+    setPlayers([...newArray, updatedPlayer]);
+  }
+
+  function decrementScoreByOne(id) {
+    const thisPlayer = players.find((player) => player.id === id);
+    const updatedScore = thisPlayer.score - 1;
+    const updatedPlayer = { ...thisPlayer, score: updatedScore };
+    //console.log("thisPlayer updated", updatedPlayer);
+    const newArray = players.filter((player) => player.id !== id);
+
+    setPlayers([...newArray, updatedPlayer]);
+  }
+
+  function decrementByFive(id) {
+    const thisPlayer = players.find((player) => player.id === id);
+    const updatedScore = thisPlayer.score - 5;
+    const updatedPlayer = { ...thisPlayer, score: updatedScore };
+    //console.log("thisPlayer updated", updatedPlayer);
+    const newArray = players.filter((player) => player.id !== id);
+
+    setPlayers([...newArray, updatedPlayer]);
+  }
+
+  function decrementFifty(id) {
+    const thisPlayer = players.find((player) => player.id === id);
+    const updatedScore = thisPlayer.score - thisPlayer.score / 2;
+
+    const updatedPlayer = { ...thisPlayer, score: updatedScore };
+    //console.log("thisPlayer updated", updatedPlayer);
+    const newArray = players.filter((player) => player.id !== id);
+
+    setPlayers([...newArray, updatedPlayer]);
+  }
+
+  function incrementFifty(id) {
+    const thisPlayer = players.find((player) => player.id === id);
+    const updatedScore = thisPlayer.score + thisPlayer.score / 2;
+
+    const updatedPlayer = { ...thisPlayer, score: updatedScore };
+    //console.log("thisPlayer updated", updatedPlayer);
+    const newArray = players.filter((player) => player.id !== id);
+
+    setPlayers([...newArray, updatedPlayer]);
+  }
+
+  function playersByScore(playerA, playerB) {
+    return playerB.score - playerA.score;
+  }
+
+  const orderedPlayers = players.sort(playersByScore);
+  //console.log("orderedPlayers", orderedPlayers);
 
   return (
     <div>
@@ -55,15 +113,21 @@ function App() {
         placeholder="name"
         value={newPlayer}
         onChange={(e) => setNewPlayer(e.target.value)}
-      />
+      />{" "}
       <button onClick={addMe}>Add</button>
-      {players.map((player) => (
+      {orderedPlayers.map((player) => (
         <Scoreboard
           key={player.id}
           id={player.id}
           name={player.name}
           score={player.score}
           incrementScoreByOne={incrementScoreByOne}
+          resetScore={resetScore}
+          decrementScoreByOne={decrementScoreByOne}
+          decrementByFive={decrementByFive}
+          decrementFifty={decrementFifty}
+          incrementByFive={incrementByFive}
+          incrementFifty={incrementFifty}
         />
       ))}
     </div>

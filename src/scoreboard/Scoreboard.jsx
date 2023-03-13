@@ -7,13 +7,13 @@ export default function Scoreboard(props) {
 
   let message;
 
-  if (score < 10) {
+  if (props.score < 10) {
     message = "A journey of a 1000 miles start with a single step";
-  } else if (score >= 10 && score < 45) {
+  } else if (props.score >= 10 && props.score < 45) {
     message = "C'mon you can do it";
-  } else if (score >= 45 && score < 80) {
+  } else if (props.score >= 45 && props.score < 80) {
     message = "You're getting there";
-  } else if (score >= 80) {
+  } else if (props.score >= 80) {
     message = "Hold on! Finish strong";
   }
 
@@ -27,45 +27,49 @@ export default function Scoreboard(props) {
 
   return (
     <div className="App">
-      <h1>{props.name}</h1>
+      <h3>{props.name}</h3>
       <h3>bar comes here ;)</h3>
       <p>{props.score}/100</p>{" "}
-      {score >= 10 ? (
+      {props.score >= 10 ? (
         <button
-          onClick={() => {
-            setScore(score - score / 2);
-            setMessage(message);
-          }}
+          // onClick={() => {
+          //   setScore(score - score / 2);
+          //   setMessage(message);
+          // }}
+          onClick={() => props.decrementFifty(props.id)}
         >
           - 50%
         </button>
       ) : undefined}
-      {score >= 10 ? (
+      {props.score >= 10 ? (
         <button
-          onClick={() => {
-            setScore(score - 5);
-            setMessage(message);
-          }}
+          // onClick={() => {
+          //   setScore(score - 5);
+          //   setMessage(message);
+          // }}
+          onClick={() => props.decrementByFive(props.id)}
         >
           - 5
         </button>
       ) : undefined}{" "}
-      {score >= 10 ? (
+      {props.score >= 10 ? (
         <button
-          onClick={() => {
-            setScore(score - 1);
-            setMessage(message);
-          }}
+          // onClick={() => {
+          //   setScore(score - 1);
+          //   setMessage(message);
+          // }}
+          onClick={() => props.decrementScoreByOne(props.id)}
         >
           - 1
         </button>
       ) : undefined}{" "}
-      {score > 0 && score >= 10 ? (
+      {props.score > 0 && props.score >= 10 ? (
         <button
-          onClick={() => {
-            setScore(0);
-            setMessage(message);
-          }}
+          // onClick={() => {
+          //   setScore(0);
+          //   setMessage(message);
+          // }}
+          onClick={() => props.resetScore(props.id)}
         >
           Reset
         </button>
@@ -80,19 +84,21 @@ export default function Scoreboard(props) {
         + 1
       </button>{" "}
       <button
-      // onClick={() => {
-      //   setScore(score + 5);
-      //   setMessage(message);
-      // }}
+        // onClick={() => {
+        //   setScore(score + 5);
+        //   setMessage(message);
+        // }}
+        onClick={() => props.incrementByFive(props.id)}
       >
         + 5
       </button>{" "}
-      {score >= 10 && score < 80 ? (
+      {props.score >= 10 && props.score < 80 ? (
         <button
-          onClick={() => {
-            setScore(score + score / 2);
-            setMessage(message);
-          }}
+          // onClick={() => {
+          //   setScore(score + score / 2);
+          //   setMessage(message);
+          // }}
+          onClick={() => props.incrementFifty(props.id)}
         >
           + 50%
         </button>
