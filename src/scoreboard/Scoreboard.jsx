@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function Scoreboard(props) {
   const [score, setScore] = useState(0);
+  //console.log("props", props);
 
   let message;
 
@@ -28,7 +29,7 @@ export default function Scoreboard(props) {
     <div className="App">
       <h1>{props.name}</h1>
       <h3>bar comes here ;)</h3>
-      <p>{score}/100</p>{" "}
+      <p>{props.score}/100</p>{" "}
       {score >= 10 ? (
         <button
           onClick={() => {
@@ -70,18 +71,19 @@ export default function Scoreboard(props) {
         </button>
       ) : undefined}{" "}
       <button
-        onClick={() => {
-          setScore(score + 1);
-          setMessage(message);
-        }}
+        // onClick={() => {
+        //   setScore(score + 1);
+        //   setMessage(message);
+        // }}
+        onClick={() => props.incrementScoreByOne(props.id)}
       >
         + 1
       </button>{" "}
       <button
-        onClick={() => {
-          setScore(score + 5);
-          setMessage(message);
-        }}
+      // onClick={() => {
+      //   setScore(score + 5);
+      //   setMessage(message);
+      // }}
       >
         + 5
       </button>{" "}
