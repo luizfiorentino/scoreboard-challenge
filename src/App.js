@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [score, setScore] = useState(0);
+  const [text, setText] = useState(
+    "A journey of a 1000 miles start with a single step"
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Score Board</h1>
+      <h3>bar comes here ;)</h3>
+      <p>{score}/100</p>
+      <button onClick={() => setScore(score + 1)}>+</button>{" "}
+      <button onClick={() => setScore(score - 1)}>-</button>
+      <p>{text}</p>
     </div>
   );
 }
