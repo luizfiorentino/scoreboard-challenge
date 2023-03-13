@@ -29,7 +29,7 @@ function App() {
       />
       <button onClick={addMe}>Add</button>
       {players.map((player) => (
-        <Scoreboard name={player} />
+        <Scoreboard key={player} name={player} />
       ))}
     </div>
   );
