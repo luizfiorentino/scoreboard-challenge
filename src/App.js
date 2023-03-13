@@ -29,22 +29,72 @@ function App() {
       <h1>Score Board</h1>
       <h3>bar comes here ;)</h3>
       <p>{score}/100</p>{" "}
-      <button
-        onClick={() => {
-          setScore(score - 1);
-          setMessage(message);
-        }}
-      >
-        -
-      </button>{" "}
+      {score >= 10 ? (
+        <button
+          onClick={() => {
+            setScore(score - score / 2);
+            setMessage(message);
+          }}
+        >
+          - 50%
+        </button>
+      ) : undefined}
+      {score >= 10 ? (
+        <button
+          onClick={() => {
+            setScore(score - 5);
+            setMessage(message);
+          }}
+        >
+          - 5
+        </button>
+      ) : undefined}{" "}
+      {score >= 10 ? (
+        <button
+          onClick={() => {
+            setScore(score - 1);
+            setMessage(message);
+          }}
+        >
+          - 1
+        </button>
+      ) : undefined}{" "}
+      {score > 0 && score >= 10 ? (
+        <button
+          onClick={() => {
+            setScore(0);
+            setMessage(message);
+          }}
+        >
+          Reset
+        </button>
+      ) : undefined}{" "}
       <button
         onClick={() => {
           setScore(score + 1);
           setMessage(message);
         }}
       >
-        +
+        + 1
       </button>{" "}
+      <button
+        onClick={() => {
+          setScore(score + 5);
+          setMessage(message);
+        }}
+      >
+        + 5
+      </button>{" "}
+      {score >= 10 && score < 80 ? (
+        <button
+          onClick={() => {
+            setScore(score + score / 2);
+            setMessage(message);
+          }}
+        >
+          + 50%
+        </button>
+      ) : undefined}{" "}
       <p>{displayMessage}</p>
     </div>
   );
