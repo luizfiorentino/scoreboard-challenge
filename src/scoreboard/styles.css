@@ -2,7 +2,7 @@
 
 .scoreboard-main {
   font-family: "Roboto", sans-serif;
-  /* margin: 0 auto; */
+  max-width: 721px;
 }
 
 .scoreboard-title {
@@ -15,7 +15,7 @@
 }
 
 .add-player {
-  margin-left: 2rem;
+  margin: 0 2rem auto;
 }
 
 .btn {
@@ -33,12 +33,14 @@
 .name {
   margin-top: 2rem;
   display: flex;
+  justify-content: left;
   margin-left: 2rem;
 }
 
 .msg-and-score {
   display: flex;
   justify-content: space-between;
+
   max-width: 30rem;
   margin-left: 2rem;
 }
