@@ -87,7 +87,10 @@ export default function Scoreboard(props) {
               Reset
             </button>
           ) : undefined}{" "}
-          <button onClick={() => props.incrementScoreByOne(props.id)}>
+          <button
+            className="btn-inner"
+            onClick={() => props.incrementScoreByOne(props.id)}
+          >
             + 1
           </button>{" "}
           <button
@@ -97,7 +100,10 @@ export default function Scoreboard(props) {
             + 5
           </button>{" "}
           {props.score >= 10 && props.score < 80 ? (
-            <button onClick={() => props.incrementFifty(props.id)}>
+            <button
+              className="btn-inner"
+              onClick={() => props.incrementFifty(props.id)}
+            >
               + 50%
             </button>
           ) : undefined}{" "}
