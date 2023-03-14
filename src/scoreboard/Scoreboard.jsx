@@ -10,7 +10,7 @@ export default function Scoreboard(props) {
   let color;
 
   if (props.score < 10) {
-    message = "A journey of a 1000 miles start with a single step";
+    message = "A journey of a 1000 miles starts with a single step";
     color = "#db2607";
   } else if (props.score >= 10 && props.score < 45) {
     message = "C'mon you can do it";
