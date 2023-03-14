@@ -105,16 +105,22 @@ function App() {
   //console.log("orderedPlayers", orderedPlayers);
 
   return (
-    <div>
-      <h1>Score board</h1>
-      <p>New Player</p>
-      <input
-        type="text"
-        placeholder="name"
-        value={newPlayer}
-        onChange={(e) => setNewPlayer(e.target.value)}
-      />{" "}
-      <button onClick={addMe}>Add</button>
+    <div className="scoreboard-main">
+      <h2 className="scoreboard-title">Score Boards</h2>
+      <div className="add-player">
+        <p>New Player</p>
+        <input
+          type="text"
+          placeholder="name"
+          value={newPlayer}
+          onChange={(e) => setNewPlayer(e.target.value)}
+          className="input"
+        />{" "}
+        <button className="btn" onClick={addMe}>
+          Add student
+        </button>
+      </div>
+
       {orderedPlayers.map((player) => (
         <Scoreboard
           key={player.id}
