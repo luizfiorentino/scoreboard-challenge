@@ -7,15 +7,20 @@ export default function Scoreboard(props) {
   //console.log("props", props);
 
   let message;
+  let color;
 
   if (props.score < 10) {
     message = "A journey of a 1000 miles start with a single step";
+    color = "#db2607";
   } else if (props.score >= 10 && props.score < 45) {
     message = "C'mon you can do it";
+    color = "#db2607";
   } else if (props.score >= 45 && props.score < 80) {
     message = "You're getting there";
+    color = "#fab70c";
   } else if (props.score >= 80) {
     message = "Hold on! Finish strong";
+    color = "#2ecc71";
   }
 
   const setMessage = () => {
@@ -37,7 +42,7 @@ export default function Scoreboard(props) {
           <div
             className="inner-bar"
             data-percentage="70%"
-            style={{ width: width }}
+            style={{ width: width, backgroundColor: color }}
           ></div>
           <script src="main.js"></script>
         </div>
