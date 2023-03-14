@@ -31,7 +31,7 @@ export default function Scoreboard(props) {
   //console.log("score, message:", score, message);
   const displayMessage = message;
 
-  const width = (props.score / 100) * 290;
+  const width = (props.score / 100) * 610;
 
   return (
     <div className="App">
@@ -52,7 +52,7 @@ export default function Scoreboard(props) {
       <div className="body">
         <div className="msg-and-score">
           <p>{displayMessage}</p>
-          <p>{props.score}/100</p>
+          <p>{Math.round(props.score)}/100</p>
         </div>{" "}
         <div className="buttons">
           {props.score >= 10 ? (
