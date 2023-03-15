@@ -76,41 +76,41 @@ export default function Scoreboard(props) {
           <p>{Math.round(props.score)}/100</p>
         </div>{" "}
         <div className="buttons">
-          {props.score >= 10 ? (
+          {props.score >= 10 && (
             <button className="btn-inner" onClick={decrementScoreByFifty}>
               - 50%
             </button>
-          ) : undefined}
-          {props.score >= 10 ? (
+          )}
+          {props.score >= 10 && (
             <button className="btn-inner" onClick={decrementScoreByFive}>
               - 5
             </button>
-          ) : undefined}{" "}
-          {props.score >= 10 ? (
+          )}{" "}
+          {props.score >= 10 && (
             <button className="btn-inner" onClick={decrementScoreByOne}>
               - 1
             </button>
-          ) : undefined}{" "}
-          {props.score > 0 && props.score >= 10 ? (
+          )}{" "}
+          {props.score > 0 && props.score >= 10 && (
             <button className="btn-inner" onClick={resetScore}>
               Reset
             </button>
-          ) : undefined}{" "}
-          {props.score < 100 ? (
+          )}{" "}
+          {props.score < 100 && (
             <button className="btn-inner" onClick={incrementScoreByOne}>
               + 1
             </button>
-          ) : undefined}{" "}
-          {props.score <= 95 ? (
+          )}{" "}
+          {props.score <= 95 && (
             <button className="btn-inner" onClick={incrementScoreByFive}>
               + 5
             </button>
-          ) : undefined}{" "}
-          {props.score >= 10 && props.score < 66 ? (
+          )}{" "}
+          {props.score >= 10 && props.score < 66 && (
             <button className="btn-inner" onClick={incrementScoreByFifty}>
               + 50%
             </button>
-          ) : undefined}{" "}
+          )}{" "}
         </div>
       </div>
     </div>
