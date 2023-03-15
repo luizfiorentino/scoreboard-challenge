@@ -1,6 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext, createContext } from "react";
 import "./styles.css";
+import ProgressBar from "../progressBar/ProgressBar";
+
+export const scoreBoardContext = createContext({});
 
 export default function Scoreboard(props) {
   function incrementScoreByOne() {
@@ -55,64 +58,67 @@ export default function Scoreboard(props) {
   const width = (props.score / 100) * 610;
 
   return (
-    <div className="App">
-      <div className="name-and-bar">
-        <h3 className="name">{props.name}</h3>
-        <div className="container">
-          <div className="bar">
-            <div
-              className="inner-bar"
-              data-percentage="70%"
-              style={{ width: width, backgroundColor: color }}
-            ></div>
-            <script src="main.js"></script>
+    <scoreBoardContext.Provider value={{ width: width, color: color }}>
+      <div className="App">
+        <div className="name-and-bar">
+          <h3 className="name">{props.name}</h3>
+          <ProgressBar />
+          {/* <div className="container">
+            <div className="bar">
+              <div
+                className="inner-bar"
+                data-percentage="70%"
+                style={{ width: width, backgroundColor: color }}
+              ></div>
+              <script src="main.js"></script>
+            </div>
+          </div> */}
+        </div>
+
+        <div className="body">
+          <div className="msg-and-score">
+            <p>{displayMessage}</p>
+            <p>{Math.round(props.score)}/100</p>
+          </div>{" "}
+          <div className="buttons">
+            {props.score >= 10 && (
+              <button className="btn-inner" onClick={decrementScoreByFifty}>
+                - 50%
+              </button>
+            )}
+            {props.score >= 10 && (
+              <button className="btn-inner" onClick={decrementScoreByFive}>
+                - 5
+              </button>
+            )}{" "}
+            {props.score >= 10 && (
+              <button className="btn-inner" onClick={decrementScoreByOne}>
+                - 1
+              </button>
+            )}{" "}
+            {props.score > 0 && props.score >= 10 && (
+              <button className="btn-inner" onClick={resetScore}>
+                Reset
+              </button>
+            )}{" "}
+            {props.score < 100 && (
+              <button className="btn-inner" onClick={incrementScoreByOne}>
+                + 1
+              </button>
+            )}{" "}
+            {props.score <= 95 && (
+              <button className="btn-inner" onClick={incrementScoreByFive}>
+                + 5
+              </button>
+            )}{" "}
+            {props.score >= 10 && props.score < 66 && (
+              <button className="btn-inner" onClick={incrementScoreByFifty}>
+                + 50%
+              </button>
+            )}{" "}
           </div>
         </div>
       </div>
-
-      <div className="body">
-        <div className="msg-and-score">
-          <p>{displayMessage}</p>
-          <p>{Math.round(props.score)}/100</p>
-        </div>{" "}
-        <div className="buttons">
-          {props.score >= 10 && (
-            <button className="btn-inner" onClick={decrementScoreByFifty}>
-              - 50%
-            </button>
-          )}
-          {props.score >= 10 && (
-            <button className="btn-inner" onClick={decrementScoreByFive}>
-              - 5
-            </button>
-          )}{" "}
-          {props.score >= 10 && (
-            <button className="btn-inner" onClick={decrementScoreByOne}>
-              - 1
-            </button>
-          )}{" "}
-          {props.score > 0 && props.score >= 10 && (
-            <button className="btn-inner" onClick={resetScore}>
-              Reset
-            </button>
-          )}{" "}
-          {props.score < 100 && (
-            <button className="btn-inner" onClick={incrementScoreByOne}>
-              + 1
-            </button>
-          )}{" "}
-          {props.score <= 95 && (
-            <button className="btn-inner" onClick={incrementScoreByFive}>
-              + 5
-            </button>
-          )}{" "}
-          {props.score >= 10 && props.score < 66 && (
-            <button className="btn-inner" onClick={incrementScoreByFifty}>
-              + 50%
-            </button>
-          )}{" "}
-        </div>
-      </div>
-    </div>
+    </scoreBoardContext.Provider>
   );
 }
