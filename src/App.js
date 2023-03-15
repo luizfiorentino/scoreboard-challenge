@@ -4,9 +4,6 @@ import Scoreboard from "./scoreboard/Scoreboard";
 import NewPlayer from "./newPlayer/NewPlayer";
 import Navbar from "./navbar/Navbar";
 
-// Feat 3- players sorted by score:
-// -> refactor the state of Scoreborad to App.js
-// -> transform the state to an object with (a)name and (b) score
 export const playerContext = createContext({});
 function App() {
   const [players, setPlayers] = useState([]);
@@ -45,7 +42,7 @@ function App() {
   //console.log("orderedPlayers", orderedPlayers);
 
   return (
-    <playerContext.Provider value={{ addMe: addMe }}>
+    <playerContext.Provider value={{ addMe: addMe, updateScore: updateScore }}>
       <div className="scoreboard-main">
         <Navbar />
         <h2 className="scoreboard-title">Score Boards</h2>
@@ -59,7 +56,7 @@ function App() {
             id={player.id}
             name={player.name}
             score={player.score}
-            updateScore={updateScore}
+            // updateScore={updateScore}
           />
         ))}
       </div>

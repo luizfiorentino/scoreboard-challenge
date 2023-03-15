@@ -2,33 +2,39 @@ import React from "react";
 import { useState, useContext, createContext } from "react";
 import "./styles.css";
 import ProgressBar from "../progressBar/ProgressBar";
+import Buttons from "../buttons/Buttons";
+import { playerContext } from "../App";
 
 export const scoreBoardContext = createContext({});
 
 export default function Scoreboard(props) {
+  const { updateScore } = useContext(playerContext);
+
   function incrementScoreByOne() {
-    props.updateScore(props.id, 1);
+    updateScore(props.id, 1);
   }
   function incrementScoreByFive() {
-    props.updateScore(props.id, 5);
+    updateScore(props.id, 5);
   }
   function resetScore() {
-    props.updateScore(props.id, -props.score);
+    updateScore(props.id, -props.score);
   }
   function decrementScoreByOne() {
-    props.updateScore(props.id, -1);
+    updateScore(props.id, -1);
   }
   function decrementScoreByFive() {
-    props.updateScore(props.id, -5);
+    updateScore(props.id, -5);
   }
   function decrementScoreByFifty() {
-    props.updateScore(props.id, -(props.score / 2));
+    updateScore(props.id, -(props.score / 2));
   }
   function incrementScoreByFifty() {
-    props.updateScore(props.id, props.score / 2);
+    updateScore(props.id, props.score / 2);
   }
-  const [score, setScore] = useState(0);
+  // const [score, setScore] = useState(0);
   //console.log("props", props);
+
+  const score = props.score;
 
   let message;
   let color;
@@ -58,21 +64,25 @@ export default function Scoreboard(props) {
   const width = (props.score / 100) * 610;
 
   return (
-    <scoreBoardContext.Provider value={{ width: width, color: color }}>
+    <scoreBoardContext.Provider
+      value={{
+        width: width,
+        color: color,
+        score: score,
+        incrementScoreByOne: incrementScoreByOne,
+        incrementScoreByFive: incrementScoreByFive,
+        resetScore: resetScore,
+        decrementScoreByOne: decrementScoreByOne,
+        decrementScoreByFive: decrementScoreByFive,
+        decrementScoreByFifty: decrementScoreByFifty,
+        incrementScoreByFifty: incrementScoreByFifty,
+      }}
+    >
       <div className="App">
         <div className="name-and-bar">
           <h3 className="name">{props.name}</h3>
           <ProgressBar />
-          {/* <div className="container">
-            <div className="bar">
-              <div
-                className="inner-bar"
-                data-percentage="70%"
-                style={{ width: width, backgroundColor: color }}
-              ></div>
-              <script src="main.js"></script>
-            </div>
-          </div> */}
+          <Buttons />
         </div>
 
         <div className="body">
@@ -80,43 +90,6 @@ export default function Scoreboard(props) {
             <p>{displayMessage}</p>
             <p>{Math.round(props.score)}/100</p>
           </div>{" "}
-          <div className="buttons">
-            {props.score >= 10 && (
-              <button className="btn-inner" onClick={decrementScoreByFifty}>
-                - 50%
-              </button>
-            )}
-            {props.score >= 10 && (
-              <button className="btn-inner" onClick={decrementScoreByFive}>
-                - 5
-              </button>
-            )}{" "}
-            {props.score >= 10 && (
-              <button className="btn-inner" onClick={decrementScoreByOne}>
-                - 1
-              </button>
-            )}{" "}
-            {props.score > 0 && props.score >= 10 && (
-              <button className="btn-inner" onClick={resetScore}>
-                Reset
-              </button>
-            )}{" "}
-            {props.score < 100 && (
-              <button className="btn-inner" onClick={incrementScoreByOne}>
-                + 1
-              </button>
-            )}{" "}
-            {props.score <= 95 && (
-              <button className="btn-inner" onClick={incrementScoreByFive}>
-                + 5
-              </button>
-            )}{" "}
-            {props.score >= 10 && props.score < 66 && (
-              <button className="btn-inner" onClick={incrementScoreByFifty}>
-                + 50%
-              </button>
-            )}{" "}
-          </div>
         </div>
       </div>
     </scoreBoardContext.Provider>
