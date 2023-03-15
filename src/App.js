@@ -1,18 +1,20 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useContext, createContext } from "react";
 import Scoreboard from "./scoreboard/Scoreboard";
+import NewPlayer from "./newPlayer/NewPlayer";
+import Navbar from "./navbar/Navbar";
 
 // Feat 3- players sorted by score:
 // -> refactor the state of Scoreborad to App.js
 // -> transform the state to an object with (a)name and (b) score
-
+export const playerContext = createContext({});
 function App() {
   const [players, setPlayers] = useState([]);
   const [newPlayer, setNewPlayer] = useState("");
   //const [score, setScore] = useState(0);
   //const [playersArray, setPlayersArray] = useState([]);
 
-  const addMe = () => {
+  const addMe = (newPlayer) => {
     const player = {
       name: newPlayer,
       score: 0,
@@ -43,32 +45,25 @@ function App() {
   //console.log("orderedPlayers", orderedPlayers);
 
   return (
-    <div className="scoreboard-main">
-      <h2 className="scoreboard-title">Score Boards</h2>
-      <div className="add-player">
-        <p>New Player</p>
-        <input
-          type="text"
-          placeholder="name"
-          value={newPlayer}
-          onChange={(e) => setNewPlayer(e.target.value)}
-          className="input"
-        />{" "}
-        <button className="btn" onClick={addMe}>
-          Add student
-        </button>
-      </div>
+    <playerContext.Provider value={{ addMe: addMe }}>
+      <div className="scoreboard-main">
+        <Navbar />
+        <h2 className="scoreboard-title">Score Boards</h2>
+        <div className="add-player">
+          <NewPlayer />
+        </div>
 
-      {orderedPlayers.map((player) => (
-        <Scoreboard
-          key={player.id}
-          id={player.id}
-          name={player.name}
-          score={player.score}
-          updateScore={updateScore}
-        />
-      ))}
-    </div>
+        {orderedPlayers.map((player) => (
+          <Scoreboard
+            key={player.id}
+            id={player.id}
+            name={player.name}
+            score={player.score}
+            updateScore={updateScore}
+          />
+        ))}
+      </div>
+    </playerContext.Provider>
   );
 }
 

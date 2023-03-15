@@ -5,6 +5,10 @@
   max-width: 721px;
 }
 
+.navbar-main {
+  background-color: pink;
+}
+
 .scoreboard-title {
   display: flex;
   justify-content: center;
