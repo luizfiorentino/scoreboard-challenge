@@ -3,6 +3,27 @@ import { useState } from "react";
 import "./styles.css";
 
 export default function Scoreboard(props) {
+  function incrementScoreByOne() {
+    props.updateScore(props.id, 1);
+  }
+  function incrementScoreByFive() {
+    props.updateScore(props.id, 5);
+  }
+  function resetScore() {
+    props.updateScore(props.id, -props.score);
+  }
+  function decrementScoreByOne() {
+    props.updateScore(props.id, -1);
+  }
+  function decrementScoreByFive() {
+    props.updateScore(props.id, -5);
+  }
+  function decrementScoreByFifty() {
+    props.updateScore(props.id, -(props.score / 2));
+  }
+  function incrementScoreByFifty() {
+    props.updateScore(props.id, props.score / 2);
+  }
   const [score, setScore] = useState(0);
   //console.log("props", props);
 
@@ -56,58 +77,37 @@ export default function Scoreboard(props) {
         </div>{" "}
         <div className="buttons">
           {props.score >= 10 ? (
-            <button
-              className="btn-inner"
-              onClick={() => props.decrementFifty(props.id)}
-            >
+            <button className="btn-inner" onClick={decrementScoreByFifty}>
               - 50%
             </button>
           ) : undefined}
           {props.score >= 10 ? (
-            <button
-              className="btn-inner"
-              onClick={() => props.decrementByFive(props.id)}
-            >
+            <button className="btn-inner" onClick={decrementScoreByFive}>
               - 5
             </button>
           ) : undefined}{" "}
           {props.score >= 10 ? (
-            <button
-              className="btn-inner"
-              onClick={() => props.decrementScoreByOne(props.id)}
-            >
+            <button className="btn-inner" onClick={decrementScoreByOne}>
               - 1
             </button>
           ) : undefined}{" "}
           {props.score > 0 && props.score >= 10 ? (
-            <button
-              className="btn-inner"
-              onClick={() => props.resetScore(props.id)}
-            >
+            <button className="btn-inner" onClick={resetScore}>
               Reset
             </button>
           ) : undefined}{" "}
           {props.score < 100 ? (
-            <button
-              className="btn-inner"
-              onClick={() => props.incrementScoreByOne(props.id)}
-            >
+            <button className="btn-inner" onClick={incrementScoreByOne}>
               + 1
             </button>
           ) : undefined}{" "}
           {props.score <= 95 ? (
-            <button
-              className="btn-inner"
-              onClick={() => props.incrementByFive(props.id)}
-            >
+            <button className="btn-inner" onClick={incrementScoreByFive}>
               + 5
             </button>
           ) : undefined}{" "}
-          {props.score >= 10 && props.score < 80 ? (
-            <button
-              className="btn-inner"
-              onClick={() => props.incrementFifty(props.id)}
-            >
+          {props.score >= 10 && props.score < 66 ? (
+            <button className="btn-inner" onClick={incrementScoreByFifty}>
               + 50%
             </button>
           ) : undefined}{" "}

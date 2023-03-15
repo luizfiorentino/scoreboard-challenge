@@ -25,71 +25,9 @@ function App() {
   };
   //console.log("addPlayer", newPlayer, players);
 
-  function incrementScoreByOne(id) {
+  function updateScore(id, updated) {
     const thisPlayer = players.find((player) => player.id === id);
-    const updatedScore = thisPlayer.score + 1;
-    const updatedPlayer = { ...thisPlayer, score: updatedScore };
-    //console.log("thisPlayer updated", updatedPlayer);
-    const newArray = players.filter((player) => player.id !== id);
-
-    setPlayers([...newArray, updatedPlayer]);
-  }
-
-  function incrementByFive(id) {
-    const thisPlayer = players.find((player) => player.id === id);
-    const updatedScore = thisPlayer.score + 5;
-    const updatedPlayer = { ...thisPlayer, score: updatedScore };
-    //console.log("thisPlayer updated", updatedPlayer);
-    const newArray = players.filter((player) => player.id !== id);
-
-    setPlayers([...newArray, updatedPlayer]);
-  }
-
-  function resetScore(id) {
-    const thisPlayer = players.find((player) => player.id === id);
-
-    const updatedPlayer = { ...thisPlayer, score: 0 };
-    //console.log("thisPlayer updated", updatedPlayer);
-    const newArray = players.filter((player) => player.id !== id);
-
-    setPlayers([...newArray, updatedPlayer]);
-  }
-
-  function decrementScoreByOne(id) {
-    const thisPlayer = players.find((player) => player.id === id);
-    const updatedScore = thisPlayer.score - 1;
-    const updatedPlayer = { ...thisPlayer, score: updatedScore };
-    //console.log("thisPlayer updated", updatedPlayer);
-    const newArray = players.filter((player) => player.id !== id);
-
-    setPlayers([...newArray, updatedPlayer]);
-  }
-
-  function decrementByFive(id) {
-    const thisPlayer = players.find((player) => player.id === id);
-    const updatedScore = thisPlayer.score - 5;
-    const updatedPlayer = { ...thisPlayer, score: updatedScore };
-    //console.log("thisPlayer updated", updatedPlayer);
-    const newArray = players.filter((player) => player.id !== id);
-
-    setPlayers([...newArray, updatedPlayer]);
-  }
-
-  function decrementFifty(id) {
-    const thisPlayer = players.find((player) => player.id === id);
-    const updatedScore = thisPlayer.score - thisPlayer.score / 2;
-
-    const updatedPlayer = { ...thisPlayer, score: updatedScore };
-    //console.log("thisPlayer updated", updatedPlayer);
-    const newArray = players.filter((player) => player.id !== id);
-
-    setPlayers([...newArray, updatedPlayer]);
-  }
-
-  function incrementFifty(id) {
-    const thisPlayer = players.find((player) => player.id === id);
-    const updatedScore = thisPlayer.score + thisPlayer.score / 2;
-
+    const updatedScore = thisPlayer.score + updated;
     const updatedPlayer = { ...thisPlayer, score: updatedScore };
     //console.log("thisPlayer updated", updatedPlayer);
     const newArray = players.filter((player) => player.id !== id);
@@ -127,13 +65,7 @@ function App() {
           id={player.id}
           name={player.name}
           score={player.score}
-          incrementScoreByOne={incrementScoreByOne}
-          resetScore={resetScore}
-          decrementScoreByOne={decrementScoreByOne}
-          decrementByFive={decrementByFive}
-          decrementFifty={decrementFifty}
-          incrementByFive={incrementByFive}
-          incrementFifty={incrementFifty}
+          updateScore={updateScore}
         />
       ))}
     </div>
