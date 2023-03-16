@@ -3,7 +3,7 @@ import { useState, useContext, createContext } from "react";
 import "./styles.css";
 import ProgressBar from "../progressBar/ProgressBar";
 import Buttons from "../buttons/Buttons";
-import { playerContext } from "../App";
+import { playerContext } from "../contexts/PlayerContext";
 
 export const scoreBoardContext = createContext({});
 

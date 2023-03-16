@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { playerContext } from "../App";
+import { playerContext } from "../contexts/PlayerContext";
 
 export default function NewPlayer() {
   const [newPlayer, setNewPlayer] = useState("");

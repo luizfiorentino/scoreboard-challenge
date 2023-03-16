@@ -3,36 +3,38 @@ import { useState, useContext, createContext } from "react";
 import Scoreboard from "./scoreboard/Scoreboard";
 import NewPlayer from "./newPlayer/NewPlayer";
 import Navbar from "./navbar/Navbar";
+import { playerContext } from "./contexts/PlayerContext";
 
-export const playerContext = createContext({});
+// export const playerContext = createContext({});
 function App() {
-  const [players, setPlayers] = useState([]);
-  const [newPlayer, setNewPlayer] = useState("");
+  const { players } = useContext(playerContext);
+  // const [players, setPlayers] = useState([]);
+  // const [newPlayer, setNewPlayer] = useState("");
   //const [score, setScore] = useState(0);
   //const [playersArray, setPlayersArray] = useState([]);
 
-  const addMe = (newPlayer) => {
-    const player = {
-      name: newPlayer,
-      score: 0,
-      id: Math.round(Math.random() * 100),
-    };
+  // const addMe = (newPlayer) => {
+  //   const player = {
+  //     name: newPlayer,
+  //     score: 0,
+  //     id: Math.round(Math.random() * 100),
+  //   };
 
-    setPlayers([...players, player]);
-    setNewPlayer("");
-    return players;
-  };
+  //   setPlayers([...players, player]);
+  //   setNewPlayer("");
+  //   return players;
+  // };
   //console.log("addPlayer", newPlayer, players);
 
-  function updateScore(id, updated) {
-    const thisPlayer = players.find((player) => player.id === id);
-    const updatedScore = thisPlayer.score + updated;
-    const updatedPlayer = { ...thisPlayer, score: updatedScore };
-    //console.log("thisPlayer updated", updatedPlayer);
-    const newArray = players.filter((player) => player.id !== id);
+  // function updateScore(id, updated) {
+  //   const thisPlayer = players.find((player) => player.id === id);
+  //   const updatedScore = thisPlayer.score + updated;
+  //   const updatedPlayer = { ...thisPlayer, score: updatedScore };
+  //   //console.log("thisPlayer updated", updatedPlayer);
+  //   const newArray = players.filter((player) => player.id !== id);
 
-    setPlayers([...newArray, updatedPlayer]);
-  }
+  //   setPlayers([...newArray, updatedPlayer]);
+  // }
 
   function playersByScore(playerA, playerB) {
     return playerB.score - playerA.score;
@@ -42,7 +44,7 @@ function App() {
   //console.log("orderedPlayers", orderedPlayers);
 
   return (
-    <playerContext.Provider value={{ addMe: addMe, updateScore: updateScore }}>
+    <div>
       <div className="scoreboard-main">
         <Navbar />
         <h2 className="scoreboard-title">Score Boards</h2>
@@ -60,7 +62,7 @@ function App() {
           />
         ))}
       </div>
-    </playerContext.Provider>
+    </div>
   );
 }
 
