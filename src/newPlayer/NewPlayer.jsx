@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { playerContext } from "../contexts/PlayerContext";
+import { usePlayers } from "../contexts/PlayerContext";
 
 export default function NewPlayer() {
   const [newPlayer, setNewPlayer] = useState("");
-  const { addMe } = useContext(playerContext);
+  const { addMe } = usePlayers();
   return (
     <div>
       <p>New Player</p>

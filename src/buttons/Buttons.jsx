@@ -1,18 +1,20 @@
 import React from "react";
 import { useContext } from "react";
 import { scoreBoardContext } from "../scoreboard/Scoreboard";
+import { usePlayer } from "../contexts/PlayerContext";
 
-export default function Buttons() {
+export default function Buttons(props) {
   const {
+    player,
     score,
-    decrementScoreByFifty,
-    decrementScoreByFive,
-    decrementScoreByOne,
-    resetScore,
     incrementScoreByOne,
     incrementScoreByFive,
+    resetScore,
+    decrementScoreByOne,
+    decrementScoreByFive,
+    decrementScoreByFifty,
     incrementScoreByFifty,
-  } = useContext(scoreBoardContext);
+  } = usePlayer(props.id);
 
   return (
     <div>

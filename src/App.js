@@ -8,6 +8,7 @@ import { playerContext } from "./contexts/PlayerContext";
 // export const playerContext = createContext({});
 function App() {
   const { players } = useContext(playerContext);
+  console.log("players", players);
   // const [players, setPlayers] = useState([]);
   // const [newPlayer, setNewPlayer] = useState("");
   //const [score, setScore] = useState(0);
@@ -56,8 +57,8 @@ function App() {
           <Scoreboard
             key={player.id}
             id={player.id}
-            name={player.name}
-            score={player.score}
+            // name={player.name}
+            // score={player.score}
             // updateScore={updateScore}
           />
         ))}
