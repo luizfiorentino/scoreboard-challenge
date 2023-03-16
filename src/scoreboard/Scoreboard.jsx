@@ -118,7 +118,7 @@ export default function Scoreboard(props) {
     <div className="App">
       <div className="name-and-bar">
         <h3 className="name">{player.name}</h3>
-        <ProgressBar />
+        <ProgressBar width={width} color={color} />
         <Buttons id={props.id} />
       </div>
 
