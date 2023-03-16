@@ -14,7 +14,7 @@ export default function PlayerContextProvider(props) {
     };
 
     setPlayers([...players, player]);
-    // setNewPlayer("");
+
     return players;
   };
 
@@ -22,7 +22,6 @@ export default function PlayerContextProvider(props) {
     const thisPlayer = players.find((player) => player.id === id);
     const updatedScore = thisPlayer.score + updated;
     const updatedPlayer = { ...thisPlayer, score: updatedScore };
-    //console.log("thisPlayer updated", updatedPlayer);
     const newArray = players.filter((player) => player.id !== id);
 
     setPlayers([...newArray, updatedPlayer]);
@@ -49,8 +48,6 @@ export default function PlayerContextProvider(props) {
   function incrementScoreByFifty() {
     updateScore(props.id, props.score / 2);
   }
-  // const [score, setScore] = useState(0);
-  //console.log("props", props);
 
   return (
     <div>
@@ -84,7 +81,7 @@ export function usePlayer(id) {
   const { players, updateScore } = useContext(playerContext);
 
   const player = players.find((player) => id === player.id);
-  const score = player.score;
+  //   const score = player.score;
 
   function incrementScoreByOne() {
     updateScore(id, 1);
@@ -108,8 +105,31 @@ export function usePlayer(id) {
     updateScore(id, player.score / 2);
   }
 
+  let message;
+  let color;
+
+  if (player.score < 10) {
+    message = "A journey of a 1000 miles starts with a single step";
+    color = "#db2607";
+  } else if (player.score >= 10 && player.score < 45) {
+    message = "C'mon you can do it";
+    color = "#db2607";
+  } else if (player.score >= 45 && player.score < 80) {
+    message = "You're getting there";
+    color = "#fab70c";
+  } else if (player.score >= 80) {
+    message = "Hold on! Finish strong";
+    color = "#2ecc71";
+  }
+
+  const width = (player.score / 100) * 610;
+  const score = player.score;
+
   return {
     player,
+    width,
+    message,
+    color,
     score,
     incrementScoreByOne,
     incrementScoreByFive,

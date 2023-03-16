@@ -1,9 +1,9 @@
 import React from "react";
-import { useContext } from "react";
-import { scoreBoardContext } from "../scoreboard/Scoreboard";
+
+import { usePlayer } from "../contexts/PlayerContext";
 
 export default function ProgressBar(props) {
-  const { width, color } = useContext(scoreBoardContext);
+  const { width, color } = usePlayer(props.id);
 
   return (
     <div>
@@ -11,7 +11,7 @@ export default function ProgressBar(props) {
         <div className="bar">
           <div
             className="inner-bar"
-            style={{ width: props.width, backgroundColor: props.color }}
+            style={{ width: width, backgroundColor: color }}
           ></div>
           <script src="main.js"></script>
         </div>
